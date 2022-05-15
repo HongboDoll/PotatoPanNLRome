@@ -5,7 +5,7 @@ We report a section-wide pan-NLRome for the tuber-bearing section Petota, includ
 
 Pipelines and relevant scripts for:
 
-- Genome assembly
+- Genome assembly and assessment
 - Genome annotation
 - Phylogenetic analyses
 - NLR reaannotation and curation
