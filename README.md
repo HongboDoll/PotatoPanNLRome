@@ -11,6 +11,7 @@ Pipelines and relevant scripts for:
 - NLR reaannotation and curation
 - Construction and analyses of the pan-NLRome
 - Identification and analyses of integrated domains
+- Effector-based GWAS
 
 # The website
 
