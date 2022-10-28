@@ -14,6 +14,7 @@ do
 	awk 'NR!=1' mafft_out_pep/${i}.phylip | awk '{print $2}' > t && mv t mafft_out_pep/${i}.phylip
 done
 
+head -1 pep/OrthoFinder/Results_*/Orthogroups/Orthogroups.tsv | sed 's/\t/\n/g' | awk 'NR!=1' > first_col
 n=`ls mafft_out_pep/*.phylip | sed ':a;N;s/\n/ /g;ta'`
 paste -d '' $n > mafft_out_pep/GR.phylip.all
 awk 'BEIGN{n=1}{print ">"n"\n"$1;n+=1}' mafft_out_pep/GR.phylip.all > mafft_out_pep/GR.phylip.all.fa
