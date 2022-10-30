@@ -3,7 +3,7 @@
 import sys
 
 i1 = open(sys.argv[1])  # Orthogroups.GeneCount.tsv
-i2 = int(sys.argv[2])   # number of species have OG member number = 1
+i2 = int(sys.argv[2])   # number of species have NLR clades member number = 1
 
 for line in i1:
 	if 'Orthogroup' in line:
