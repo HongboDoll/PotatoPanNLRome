@@ -1,13 +1,13 @@
 #!/bin/bash
 
-cat 50_acc_dmv6.1_snp_indel.vcf|grep '#CHROM'|cut -f '10-10000'|sed 's/\t/\n/g' > accession_list.xls
+cat 50_acc_dmv6.1_snp.vcf|grep '#CHROM'|cut -f '10-10000'|sed 's/\t/\n/g' > accession_list.xls
 ls split_phenotypes/*txt | while read i
 do 
 	awk '{print $1,$1,$2}' $i > ${i}.xls
 	./convert_order_pheno_formart_2_emmax.py accession_list.xls ${i}.xls > t; mv t ${i}.xls
 done
 
-plink --vcf 50_acc_dmv6.1_snp_indel.vcf --recode12 --allow-extra-chr --geno 0.1 --maf 0.05 --allow-no-sex --biallelic-only --out 50_potato
+plink --vcf 50_acc_dmv6.1_snp.vcf --recode12 --allow-extra-chr --geno 0.1 --maf 0.05 --allow-no-sex --biallelic-only --out 50_potato
 
 cat 50_potato.map | sed 's/ST4.03ch0//g' | sed 's/ST4.03ch//g' > 50_potato.map2
 mv 50_potato.map2 50_potato.map
