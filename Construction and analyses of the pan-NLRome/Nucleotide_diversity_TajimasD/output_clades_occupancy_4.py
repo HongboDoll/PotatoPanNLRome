@@ -2,7 +2,7 @@
 
 import sys
 
-i1 = open(sys.argv[1])  # 52_potato_nonsingle-copy_OG.tsv
+i1 = open(sys.argv[1])  # 52_potato_nonsingle-copy_clades.tsv
 
 for line in i1:
 	line = line.strip().split()
