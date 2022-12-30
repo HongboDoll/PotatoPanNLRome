@@ -1,5 +1,20 @@
 #!/bin/bash
 
+####### codon alignment
+#rm -rf single_clade_codon_alignment; mkdir single_clade_codon_alignment
+#grep -v 'Cluster' 52_potato_single-copy_clade.tsv | awk '{print $1}' | while read i
+#do
+#    rm -rf ${i}
+#    cat single_clade_cds/${i}/*fa > ${i}_cds.fa
+#    cat ${i}_cds.fa|grep '>'|sed 's/>//g'|sed ':a;N;s/\n/ /g;ta' > ${i}_arrangement
+#    ParaAT_merely_codon_alignment.pl -h ${i}_arrangement -n all_NLR_cds.fa -a all_NLR_pep.fa -p proc -o ${i} -m muscle -f fasta && mv ${i}/tmpttt.cds_aln.fasta single_clade_codon_alignment/${i}_codon.out
+#    rm -rf ${i}
+#    ParaAT_merely_codon_alignment.pl -h ${i}_arrangement -n all_NLR_cds.fa -a all_NLR_pep.fa -p proc -o ${i} -m muscle -f axt -kaks && mv ${i}/tmpttt.cds_aln.axt.kaks single_clade_codon_alignment/${i}.kaks
+    #rm -rf ${i}
+#done
+
+####### Kaks
+
 #source activate /home/jiayuxin/anaconda3/envs/paml
 
 #grep -v 'Cluster' 52_potato_single-copy_clade.tsv | awk '{print $1}' | while read i
