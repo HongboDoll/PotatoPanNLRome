@@ -14,7 +14,7 @@ g1_start = []
 g1_end = []
 for line in i1:
 	line = line.strip().split()
-	g1[line[0]] = [int(line[2]), int(line[3])]
+	g1[line[0]] = [int(line[2]), int(line[3]), line[-3]]
 	g1_start.append(int(line[2]))
 	g1_end.append(int(line[3]))
 
@@ -23,7 +23,7 @@ g2_start = []
 g2_end = []
 for line in i2:
 	line = line.strip().split()
-	g2[line[0]] = [int(line[2]), int(line[3])]
+	g2[line[0]] = [int(line[2]), int(line[3]), line[-3]]
 	g2_start.append(int(line[2]))
 	g2_end.append(int(line[3]))
 
@@ -42,11 +42,17 @@ for k in g1:
 	if k in correspondance:
 		if len(correspondance[k]) == 1:
 			if correspondance[k][0] in g2:
-				print(spe1, '+', g1[k][0], g1[k][1], spe2, '+', g2[correspondance[k][0]][0], g2[correspondance[k][0]][1], order, sep='\t')
+				if g1[k][2] == g2[correspondance[k][0]][2]:
+					print(spe1, g1[k][2], g1[k][0], g1[k][1], spe2, g2[correspondance[k][0]][2], g2[correspondance[k][0]][0], g2[correspondance[k][0]][1], order, sep='\t')
+				else:
+					print(spe1, "+", g1[k][0], g1[k][1], spe2, "+", g2[correspondance[k][0]][0], g2[correspondance[k][0]][1], order, sep='\t')
 		else:
 			for j in correspondance[k]:
 				if j in g2:
-					print(spe1, '+', g1[k][0], g1[k][1], spe2, '+', g2[j][0], g2[j][1], order, sep='\t')		
+					if g1[k][2] == g2[j][2]:
+						print(spe1, g1[k][2], g1[k][0], g1[k][1], spe2, g2[j][2], g2[j][0], g2[j][1], order, sep='\t')		
+					else:
+						print(spe1, '+', g1[k][0], g1[k][1], spe2, '+', g2[j][0], g2[j][1], order, sep='\t')
 
 
 
