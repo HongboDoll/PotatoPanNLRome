@@ -130,7 +130,7 @@ for (i in 1:spe_num){
     a1 <- subset(a,V6==i)
     left <- min(a1[,3])
     right <- max(a1[,4])
-    segments(left - inter,(spe_num+1-i)*10,right + inter,(spe_num+1-i)*10,lwd=4,lend=0, col=rgb(128,128,128,max=255))
+    segments(left - inter,(spe_num+1-i)*10,right + inter,(spe_num+1-i)*10,lwd=4,lend=1, col=rgb(128,128,128,max=255))
 }
 
 
