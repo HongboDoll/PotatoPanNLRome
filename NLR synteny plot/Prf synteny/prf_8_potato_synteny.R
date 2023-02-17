@@ -189,6 +189,18 @@ for (n in 2:spe_num){
             cy <- c()
             cy <- c(y1, y2, a_y-width-0.2)
             polygon(cx,cy,col=synteny_col,border=synteny_col)
+        } else {
+            p1 <- matrix(c(ab1[i,3],a_y-width-0.2, ab1[i,3]+(ab1[i,7]-ab1[i,3])/4,a_y-width-0.2-(a_y-width-0.2-(b_y+width+0.2))/2,  ab1[i,3]+3*(ab1[i,7]-ab1[i,3])/4,b_y+width+0.2+(a_y-width-0.2-(b_y+width+0.2))/2, ab1[i,7],b_y+width+0.2), nrow=4, ncol=2, byrow=TRUE) ############### /2 represents curve ratio
+            p2 <- matrix(c(ab1[i,3]+0.85*(ab1[i,4]-ab1[i,3]),a_y-width-0.2, ab1[i,3]+0.85*(ab1[i,4]-ab1[i,3])+(ab1[i,7]+0.85*(ab1[i,8]-ab1[i,7])-(ab1[i,3]+0.85*(ab1[i,4]-ab1[i,3])))/4,b_y+width+0.2+(a_y-width-0.2-(b_y+width+0.2))/2,  ab1[i,3]+0.85*(ab1[i,4]-ab1[i,3])+3*(ab1[i,7]+0.85*(ab1[i,8]-ab1[i,7])-(ab1[i,3]+0.85*(ab1[i,4]-ab1[i,3])))/4,a_y-width-0.2-(a_y-width-0.2-(b_y+width+0.2))/2, ab1[i,7]+0.85*(ab1[i,8]-ab1[i,7]),b_y+width+0.2), nrow=4, ncol=2, byrow=TRUE)
+            x1 <- bezier(t=t, p=p1)[,1]
+            y1 <- bezier(t=t, p=p1)[,2]
+            x2 <- rev(bezier(t=t, p=p2)[,1])
+            y2 <- rev(bezier(t=t, p=p2)[,2])
+            cx <- c()
+            cx <- c(x1, x2, ab1[i,3])
+            cy <- c()
+            cy <- c(y1, y2, a_y-width-0.2)
+            polygon(cx,cy,col=synteny_col,border=synteny_col)
         }
     }
 }
