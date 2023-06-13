@@ -7,7 +7,21 @@ ref2=${spe}_hifiasm.purged.filter.fa
 threads=52
 aug_spe=${spe}_braker
 
-sed "s/augustus_species=/augustus_species=${aug_spe}/g" ../maker_opts.ctl > maker_opts.ctl1
+######## Hisat and stringtie and braker
+fastq1=xx.RNA-seq_1.fq.gz
+fastq2=xx.RNA-seq_2.fq.gz
+
+conda deactivate # (aviod perl symbol lookup error)
+hisat2-build -p ${threads} $ref $ref
+
+hisat2 -x $ref --dta -1 ${fastq1} -2 ${fastq2} -p ${threads} | samtools sort -@ ${threads} -m 2G - > ${spe}.sort.bam
+
+stringtie -p ${threads} ${spe}.sort.bam -o stringtie_out
+
+gffread -E stringtie_out -o - | sed "s#transcript#match#g" | sed "s#exon#match_part#g" > stringtie_out.gff3 ### for maker input
+
+######## maker
+sed "s/augustus_species=/augustus_species=${aug_spe}/g" ../maker_opts.ctl > maker_opts.ctl1 ### genemark/augustus is trained from whole-genome genes by braker
 
 rm -rf ${spe}.maker.output
 /public/agis/huangsanwen_group/lihongbo/software/mpich/bin/mpiexec -n $threads /public/agis/huangsanwen_group/lihongbo/software/maker/bin/maker -genome $ref -base ${spe} maker_opts.ctl1 maker_bopts.ctl maker_exe.ctl
