@@ -10,7 +10,7 @@ do
 
     java -jar $nlr_path/NLR-Parser.jar -t ${threads} -y /vol1/agis/huangsanwen_group/lihongbo/software/meme_4.9.1/bin/mast -x $nlr_path/meme.xml -i ${i}.chop.fa -c ${i}.nlr.xml -o ${i}.nlr.tab
 
-    java -jar $nlr_path/NLR-Annotator.jar -i ${i}.nlr.xml -o ${i}.nlr.txt  -f $i ${i}.nlr.flanking4k.fa 2000 -m ${i}.nlr.motif.bed -g ${i}.NLR.gff3 -b ${i}.nlr.bed
+    java -jar $nlr_path/NLR-Annotator.jar -i ${i}.nlr.xml -o ${i}.nlr.txt  -f $i ${i}.nlr.flanking4k.fa 4000 -m ${i}.nlr.motif.bed -g ${i}.NLR.gff3 -b ${i}.nlr.bed
 done
 
 rm -rf NLR_gff/; mkdir NLR_gff/
