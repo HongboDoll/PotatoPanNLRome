@@ -32,6 +32,8 @@ stringtie -p ${threads} ${spe}.sort.bam -o stringtie_out
 
 sed 's/StringTie/Cufflinks/g' stringtie_out > ${spe}.transcripts.gtf
 
+gffread -E stringtie_out -o - | sed "s#transcript#match#g" | sed "s#exon#match_part#g" > stringtie_out.gff3
+
 gffread -E ${spe}.transcripts.gtf -o - | sed "s#transcript#match#g" | sed "s#exon#match_part#g" > ${spe}.transcripts.gff3
 
 bedtools maskfasta -soft -fi $ref -bed *EDTA.TEanno.gff3 -fo $ref_sm
