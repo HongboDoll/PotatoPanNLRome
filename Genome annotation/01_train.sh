@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ref=
+ref=Solanum_sisymbriifolium.fa
 spe=Solanum_sisymbriifolium
 threads=52
 fastq1=Solanum_sisymbriifolium_merged_clean_R1.fq.gz  ## 1
@@ -14,13 +14,13 @@ date
 
 
 ######## EDTA TE masking
+ref_sm=Solanum_sisymbriifolium_softmask.fa
+
 source activate /home/lianqun/miniconda3/envs/EDTA
 
 EDTA.pl --genome $ref --step all --overwrite 1 --anno 1 --threads ${threads}
-ln -s $PWD/*.EDTA.anno/*mod.masked ${ref}.masked
 
-ref=Solanum_sisymbriifolium.fa
-ref_sm=Solanum_sisymbriifolium_softmask.fa
+bedtools maskfasta -soft -fi ${spe}_hifiasm.purged.filter.fa -bed ${spe}_hifiasm.purged.filter.fa.mod.EDTA.TEanno.gff3 -fo $ref_sm
 
 ######## Hisat and stringtie and braker
 conda deactivate # (aviod perl symbol lookup error)
