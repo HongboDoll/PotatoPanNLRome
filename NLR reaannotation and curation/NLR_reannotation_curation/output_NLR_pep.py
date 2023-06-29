@@ -4,7 +4,6 @@ import sys
 
 i1 = open(sys.argv[1])  # Anisodus_luridush.filter.NLR.pep.fa
 i2 = open(sys.argv[2])  # Anisodus_luridush_NLR_class_summary.xls
-o1 = open(sys.argv[3], 'w') # output gene name correspondance
 
 corres = {}
 for line in i2:
@@ -36,5 +35,4 @@ for k in scaf:
 		kk = k+'_NLR_'+corres[k]
 		print('>'+kk)
 		print(scaf[k])
-		o1.write('%s\t%s\n' % (k, kk))
 
