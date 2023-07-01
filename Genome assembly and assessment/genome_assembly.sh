@@ -14,7 +14,7 @@ calcuts PB.stat > cutoffs
 split_fa ${i}.p_ctg.fasta > ${i}_split.fa
 minimap2 -xasm5 -DP -t 40 ${i}_split.fa ${i}_split.fa > ${i}_split_self_aln.paf
 purge_dups -2 -T cutoffs -c PB.base.cov ${i}_split_self_aln.paf > dups.bed
-get_seqs -p ${i} dups.bed ${i}.p_ctg.fasta
+get_seqs -e -p ${i} dups.bed ${i}.p_ctg.fasta ### -e  
 mv purged.fa ${i}.purged.fasta
 
 kat comp -o ${i}_pctg -t 52 -H 10000000000 -I 10000000000 -m 31 -h ${i}.ccs.fasta.gz ${i}.p_ctg.fasta
