@@ -21,6 +21,9 @@ stringtie -p ${threads} ${spe}.sort.bam -o stringtie_out
 gffread -E stringtie_out -o - | sed "s#transcript#match#g" | sed "s#exon#match_part#g" > stringtie_out.gff3 ### for maker input
 
 ######## maker
+export AUGUSTUS_CONFIG_PATH=/public/agis/huangsanwen_group/lihongbo/software/miniconda3/config
+### copy the augustus traning set to $AUGUSTUS_CONFIG_PATH/species, so that maker can find it
+
 sed "s/augustus_species=/augustus_species=${aug_spe}/g" ../maker_opts.ctl > maker_opts.ctl1 ### genemark/augustus is trained from whole-genome genes by braker
 
 rm -rf ${spe}.maker.output
