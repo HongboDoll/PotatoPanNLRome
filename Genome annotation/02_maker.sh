@@ -8,7 +8,7 @@ aug_spe=${spe}_braker
 
 sed "s/augustus_species=/augustus_species=${aug_spe}/g" ../maker_opts.ctl > maker_opts.ctl1
 
-source activate /home/chenglin/softwares/miniconda3/envs/maker
+###source activate /home/chenglin/softwares/miniconda3/envs/maker ### NO more needed
 export AUGUSTUS_CONFIG_PATH=/public/agis/huangsanwen_group/lihongbo/software/miniconda3/config
 
 rm -rf ${spe}.maker.output
