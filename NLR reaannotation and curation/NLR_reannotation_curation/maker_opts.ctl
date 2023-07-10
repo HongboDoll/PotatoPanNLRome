@@ -31,7 +31,7 @@ prok_rm=0 #forces MAKER to repeatmask prokaryotes (no reason to change this), 1 
 softmask=1 #use soft-masking rather than hard-masking in BLAST (i.e. seg and dust filtering)
 
 #-----Gene Prediction
-snaphmm=my-genome.hmm #SNAP HMM file
+snaphmm= #SNAP HMM file
 gmhmm=04_braker/GeneMark-ET/gmhmm.mod #GeneMark HMM file
 augustus_species= #Augustus gene prediction species model
 fgenesh_par_file= #FGENESH parameter file
