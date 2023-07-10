@@ -11,6 +11,8 @@ sed "s/augustus_species=/augustus_species=${aug_spe}/g" ../maker_opts.ctl > make
 ###source activate /home/chenglin/softwares/miniconda3/envs/maker ### NO more needed
 export AUGUSTUS_CONFIG_PATH=/public/agis/huangsanwen_group/lihongbo/software/miniconda3/config
 
+### copy the augustus traning set to $AUGUSTUS_CONFIG_PATH/species, so that maker can find it
+
 rm -rf ${spe}.maker.output
 /public/agis/huangsanwen_group/lihongbo/software/mpich/bin/mpiexec -n $threads /public/agis/huangsanwen_group/lihongbo/software/maker/bin/maker -genome $ref -base ${spe} maker_opts.ctl1 maker_bopts.ctl maker_exe.ctl
 
