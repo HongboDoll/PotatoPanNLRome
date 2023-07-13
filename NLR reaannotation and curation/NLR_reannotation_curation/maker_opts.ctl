@@ -37,7 +37,7 @@ augustus_species= #Augustus gene prediction species model
 fgenesh_par_file= #FGENESH parameter file
 pred_gff= #ab-initio predictions from an external GFF3 file
 model_gff= #annotated gene models from an external GFF3 file (annotation pass-through)
-run_evm=1 #run EvidenceModeler, 1 = yes, 0 = no
+run_evm=0 #run EvidenceModeler, 1 = yes, 0 = no
 est2genome=0 #infer gene predictions directly from ESTs, 1 = yes, 0 = no
 protein2genome=0 #infer predictions from protein homology, 1 = yes, 0 = no
 trna=0 #find tRNAs with tRNAscan, 1 = yes, 0 = no
