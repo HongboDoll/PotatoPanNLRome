@@ -15,49 +15,81 @@ for line in i1:
 	if 'seqname' not in line:
 		line = line.strip().split('\t')
 		if 'NLR' in line[1]:
-			if line[-1] == "RNL":
+			if "RNL" in line[-1] and line[2] == 'CCR-NLR':
 				c['RNL'] += 1
 				if 'degenerate' in line[1]:
 					g['RNL'].append(line[0]+'~'+'degenerate')
 				else:
 					g['RNL'].append(line[0]+'~'+'normal')
 			
-			if line[2] == 'CC-NLR':
+			if 'CC-NLR' in line[2]:
 				line[-1] = line[-1].replace('P', 'N')
 				line[-1] = line[-1].replace('B', 'C')
-				if 'L' in line[-1]:
+				if 'CNL' in line[-1]:
 					c['CNL'] += 1
 					if 'degenerate' in line[1]:
 						g['CNL'].append(line[0]+'~'+'degenerate')
 					else:
 						g['CNL'].append(line[0]+'~'+'normal')
-				else:
+				elif 'CN' in line[-1] and 'L' not in line[-1]:
 					c['CN'] += 1
 					if 'degenerate' in line[1]:
 						g['CN'].append(line[0]+'~'+'degenerate')
 					else:
 						g['CN'].append(line[0]+'~'+'normal')
+				elif 'NL' in line[-1] and 'C' not in line[-1]:
+					c['NL'] += 1
+					if 'degenerate' in line[1]:
+						g['NL'].append(line[0]+'~'+'degenerate')
+					else:
+						g['NL'].append(line[0]+'~'+'normal')
+				elif 'N' in line[-1] and 'L' not in line[-1] and 'C' not in line[-1]:
+					c['NBS'] += 1
+					if 'degenerate' in line[1]:
+						g['NBS'].append(line[0]+'~'+'degenerate')
+					else:
+						g['NBS'].append(line[0]+'~'+'normal')
+				elif 'C' in line[-1] and 'N' not in line[-1] and 'L' not in line[-1]:
+					c['CCX'] += 1
+					if 'degenerate' in line[1]:
+						g['CCX'].append(line[0]+'~'+'degenerate')
+					else:
+						g['CCX'].append(line[0]+'~'+'normal')
 
-			elif line[2] == 'TIR-NLR':
-				if 'T' in line[-1]:
+			elif 'TIR-NLR' in line[2]:
+				if 'TNL' in line[-1]:
 					c['TNL'] += 1
 					if 'degenerate' in line[1]:
 						g['TNL'].append(line[0]+'~'+'degenerate')
 					else:
 						g['TNL'].append(line[0]+'~'+'normal')
 				else:
-					if 'NL' in line[-1]:
+					if 'NL' in line[-1] and 'T' not in line[-1]:
 						c['NL'] += 1
 						if 'degenerate' in line[1]:
 							g['NL'].append(line[0]+'~'+'degenerate')
 						else:
 							g['NL'].append(line[0]+'~'+'normal')
-					elif 'N' in line[-1] and 'L' not in line[-1]:
+					elif 'N' in line[-1] and 'L' not in line[-1] and 'T' not in line[-1]:
 						c['NBS'] += 1
 						if 'degenerate' in line[1]:
 							g['NBS'].append(line[0]+'~'+'degenerate')
 						else:
 							g['NBS'].append(line[0]+'~'+'normal')
+					elif 'TN' in line[-1] and 'L' not in line[-1]:
+						c['TN'] += 1
+						if 'degenerate' in line[1]:
+							g['TN'].append(line[0]+'~'+'degenerate')
+						else:
+							g['TN'].append(line[0]+'~'+'normal')
+					elif 'T' in line[-1] and 'N' not in line[-1] and 'L' not in line[-1]:
+						c['TX'] += 1
+						if 'degenerate' in line[1]:
+							g['TX'].append(line[0]+'~'+'degenerate')
+						else:
+							g['TX'].append(line[0]+'~'+'normal')
+						
+						
 			elif line[2] == 'TN (OTHER)':
 				c['TN'] += 1
 				if 'degenerate' in line[1]:
@@ -72,7 +104,7 @@ for line in i1:
 						g['NL'].append(line[0]+'~'+'degenerate')
 					else:
 						g['NL'].append(line[0]+'~'+'normal')
-				elif 'N' in line[-1] and 'NL' not in line[-1] and 'T' not in line[-1] and 'C' not in line[-1]:
+				elif 'N' in line[-1] and 'L' not in line[-1] and 'T' not in line[-1] and 'C' not in line[-1]:
 					c['NBS'] += 1
 					if 'degenerate' in line[1]:
 						g['NBS'].append(line[0]+'~'+'degenerate')
@@ -90,12 +122,18 @@ for line in i1:
 						g['TNL'].append(line[0]+'~'+'degenerate')
 					else:
 						g['TNL'].append(line[0]+'~'+'normal')
-				else:
-					c['OTHER'] += 1
+				elif 'CN' in line[-1] and 'L' not in line[-1]:
+					c['CN'] += 1
 					if 'degenerate' in line[1]:
-						g['OTHER'].append(line[0]+'~'+'degenerate')
+						g['CN'].append(line[0]+'~'+'degenerate')
 					else:
-						g['OTHER'].append(line[0]+'~'+'normal')
+						g['CN'].append(line[0]+'~'+'normal')
+				elif 'CNL' in line[-1]:
+					c['CNL'] += 1
+					if 'degenerate' in line[1]:
+						g['CNL'].append(line[0]+'~'+'degenerate')
+					else:
+						g['CNL'].append(line[0]+'~'+'normal')
 		elif line[1] == 'TX':
 			c['TX'] += 1
 			if 'degenerate' in line[1]:
@@ -122,49 +160,81 @@ for line in i2:
 	if 'seqname' not in line:
 		line = line.strip().split('\t')
 		if 'NLR' in line[1]:
-			if line[-1] == "RNL":
+			if "RNL" in line[-1] and line[2] == 'CCR-NLR':
 				c['RNL'] += 1
 				if 'degenerate' in line[1]:
 					g['RNL'].append(line[0]+'~'+'degenerate')
 				else:
 					g['RNL'].append(line[0]+'~'+'normal')
 			
-			if line[2] == 'CC-NLR':
+			if 'CC-NLR' in line[2]:
 				line[-1] = line[-1].replace('P', 'N')
 				line[-1] = line[-1].replace('B', 'C')
-				if 'L' in line[-1]:
+				if 'CNL' in line[-1]:
 					c['CNL'] += 1
 					if 'degenerate' in line[1]:
 						g['CNL'].append(line[0]+'~'+'degenerate')
 					else:
 						g['CNL'].append(line[0]+'~'+'normal')
-				else:
+				elif 'CN' in line[-1] and 'L' not in line[-1]:
 					c['CN'] += 1
 					if 'degenerate' in line[1]:
 						g['CN'].append(line[0]+'~'+'degenerate')
 					else:
 						g['CN'].append(line[0]+'~'+'normal')
+				elif 'NL' in line[-1] and 'C' not in line[-1]:
+					c['NL'] += 1
+					if 'degenerate' in line[1]:
+						g['NL'].append(line[0]+'~'+'degenerate')
+					else:
+						g['NL'].append(line[0]+'~'+'normal')
+				elif 'N' in line[-1] and 'L' not in line[-1] and 'C' not in line[-1]:
+					c['NBS'] += 1
+					if 'degenerate' in line[1]:
+						g['NBS'].append(line[0]+'~'+'degenerate')
+					else:
+						g['NBS'].append(line[0]+'~'+'normal')
+				elif 'C' in line[-1] and 'N' not in line[-1] and 'L' not in line[-1]:
+					c['CCX'] += 1
+					if 'degenerate' in line[1]:
+						g['CCX'].append(line[0]+'~'+'degenerate')
+					else:
+						g['CCX'].append(line[0]+'~'+'normal')
 
-			elif line[2] == 'TIR-NLR':
-				if 'T' in line[-1]:
+			elif 'TIR-NLR' in line[2]:
+				if 'TNL' in line[-1]:
 					c['TNL'] += 1
 					if 'degenerate' in line[1]:
 						g['TNL'].append(line[0]+'~'+'degenerate')
 					else:
 						g['TNL'].append(line[0]+'~'+'normal')
 				else:
-					if 'NL' in line[-1]:
+					if 'NL' in line[-1] and 'T' not in line[-1]:
 						c['NL'] += 1
 						if 'degenerate' in line[1]:
 							g['NL'].append(line[0]+'~'+'degenerate')
 						else:
 							g['NL'].append(line[0]+'~'+'normal')
-					elif 'N' in line[-1] and 'L' not in line[-1]:
+					elif 'N' in line[-1] and 'L' not in line[-1] and 'T' not in line[-1]:
 						c['NBS'] += 1
 						if 'degenerate' in line[1]:
 							g['NBS'].append(line[0]+'~'+'degenerate')
 						else:
 							g['NBS'].append(line[0]+'~'+'normal')
+					elif 'TN' in line[-1] and 'L' not in line[-1]:
+						c['TN'] += 1
+						if 'degenerate' in line[1]:
+							g['TN'].append(line[0]+'~'+'degenerate')
+						else:
+							g['TN'].append(line[0]+'~'+'normal')
+					elif 'T' in line[-1] and 'N' not in line[-1] and 'L' not in line[-1]:
+						c['TX'] += 1
+						if 'degenerate' in line[1]:
+							g['TX'].append(line[0]+'~'+'degenerate')
+						else:
+							g['TX'].append(line[0]+'~'+'normal')
+						
+						
 			elif line[2] == 'TN (OTHER)':
 				c['TN'] += 1
 				if 'degenerate' in line[1]:
@@ -179,7 +249,7 @@ for line in i2:
 						g['NL'].append(line[0]+'~'+'degenerate')
 					else:
 						g['NL'].append(line[0]+'~'+'normal')
-				elif 'N' in line[-1] and 'NL' not in line[-1] and 'T' not in line[-1] and 'C' not in line[-1]:
+				elif 'N' in line[-1] and 'L' not in line[-1] and 'T' not in line[-1] and 'C' not in line[-1]:
 					c['NBS'] += 1
 					if 'degenerate' in line[1]:
 						g['NBS'].append(line[0]+'~'+'degenerate')
@@ -197,12 +267,18 @@ for line in i2:
 						g['TNL'].append(line[0]+'~'+'degenerate')
 					else:
 						g['TNL'].append(line[0]+'~'+'normal')
-				else:
-					c['OTHER'] += 1
+				elif 'CN' in line[-1] and 'L' not in line[-1]:
+					c['CN'] += 1
 					if 'degenerate' in line[1]:
-						g['OTHER'].append(line[0]+'~'+'degenerate')
+						g['CN'].append(line[0]+'~'+'degenerate')
 					else:
-						g['OTHER'].append(line[0]+'~'+'normal')
+						g['CN'].append(line[0]+'~'+'normal')
+				elif 'CNL' in line[-1]:
+					c['CNL'] += 1
+					if 'degenerate' in line[1]:
+						g['CNL'].append(line[0]+'~'+'degenerate')
+					else:
+						g['CNL'].append(line[0]+'~'+'normal')
 		elif line[1] == 'TX':
 			c['TX'] += 1
 			if 'degenerate' in line[1]:
