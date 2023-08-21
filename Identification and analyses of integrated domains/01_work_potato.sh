@@ -43,3 +43,18 @@ cat results/*/*_NLRSD_gene_stat.xls > 52_potato_NLRSD_gene_stat.xls
 
 ./filter_singleton_NLR_ID.py 52_potato_NLRSD_stat_matrix.xls 52_potato_NLRSD_gene_stat_matrix.xls 52_potato_NLRSD_stat_matrix.filterSingleton.xls 52_potato_NLRSD_gene_stat_matrix.filterSingleton.xls
 
+### ID involved gene
+
+#rm ID_involved_gene.xls
+#grep -v 'Domains' 52_potato_NLRSD_gene_stat_matrix.filterSingleton.xls|awk '{print $1}' | while read i
+#do
+#    cat results/*/*verbose.NLRSD.filter.txt | grep $i | awk '{print $1"\t""'"$i"'"}' >> ID_involved_gene.xls
+#done
+
+rm ID_involved_gene_pep.fa
+cat ID_involved_gene.xls | while read i
+do
+    gene=`echo $i | awk '{print $1}'`
+    nlr_id=`echo $i | awk -F '\t' '{print $NF}'`
+    give_me_one_seq.pl all_NLR_pep.fa $gene | awk '{if($1~/>/){print ">""'"$nlr_id"'"}else{print $0}}' >> ID_involved_gene_pep.fa
+done
