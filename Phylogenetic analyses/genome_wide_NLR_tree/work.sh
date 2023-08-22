@@ -29,7 +29,7 @@ done
 #    samtools faidx refplantNLR.pep.fa ${gene}:${start}-${end} | awk '{if($1~/>/){split($1,a,":");print a[1]}else{print $0}}' >> refplantNLR_CNL_CN_TNL_TN_NB-ARC_domain.fa
 #done
 
-cat ${i}_CNL_CN_TNL_TN_NB-ARC_domain.fa refplantNLR_CNL_CN_TNL_TN_NB-ARC_domain.fa > ${i}_refplantNLR_CNL_CN_TNL_TN_NB-ARC_domain.fa
+cat nrc_CNL_CN_TNL_TN_NB-ARC_domain.fa ${i}_CNL_CN_TNL_TN_NB-ARC_domain.fa refplantNLR_CNL_CN_TNL_TN_NB-ARC_domain.fa > ${i}_refplantNLR_CNL_CN_TNL_TN_NB-ARC_domain.fa
 
 source /home/huyong/software/anaconda3/bin/activate collinerity
 
