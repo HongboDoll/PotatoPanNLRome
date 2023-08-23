@@ -16,7 +16,7 @@ do
     samtools faidx Solanum_*${i}.filter.NLR.pep.fa ${gene}:${start}-${end} | awk '{if($1~/>/){split($1,a,":");print a[1]}else{print $0}}' >> ${i}_CNL_CN_TNL_TN_NB-ARC_domain.fa
 done
 
-#cat refplantNLR_pfamscan.parsed.verbose|grep NB-ARC|grep -v 'NLR_NBS'|grep -v 'NLR_TX' |grep -v 'NLR_CCX' | grep -v 'NLR_NL' > refplantNLR_CNL_CN_TNL_TN_domain.xls
+#cat refplantNLR_pfamscan.parsed.verbose | grep NB-ARC' > refplantNLR_CNL_CN_TNL_TN_domain.xls
 #
 #./output_NB-ARC_coordinates.py refplantNLR_CNL_CN_TNL_TN_domain.xls > refplantNLR_CNL_CN_TNL_TN_NB-ARC_domain_coordinates.xls
 #
