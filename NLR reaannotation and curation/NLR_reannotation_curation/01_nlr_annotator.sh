@@ -13,7 +13,7 @@ do
 
     java -jar $nlr_path/NLR-Annotator.jar -i ${i}.nlr.xml -o ${i}.nlr.txt  -f $i ${i}.nlr.flanking4k.fa 4000 -m ${i}.nlr.motif.bed -g ${i}.NLR.gff3 -b ${i}.nlr.bed
     # For NLR-annotator v2
-    java -jar $NLR_Annotator_dir/NLR-Annotator-v2.1b.jar -i $input_fa_dir/${i}/${i}.purged.fasta -x $NLR_Annotator_dir/mot.txt -t $thred -y $NLR_Annotator_dir/store.txt -o $out_dir/${i}.nlr.txt -f $input_fasta $out_dir/${i}.nlr.flanking4k.fa 4000  -g $out_dir/${i}.nlr.gff -b $out_dir/${i}.nlr.bed -m $out_dir/${i}.nlr.motif.bed
+    java -jar $nlr_path/NLR-Annotator-v2.1b.jar -i $input_fa_dir/${i}/${i}.purged.fasta -x $nlr_path/mot.txt -t $threads -y $nlr_path/store.txt -o $out_dir/${i}.nlr.txt -f $input_fasta $out_dir/${i}.nlr.flanking4k.fa 4000  -g $out_dir/${i}.nlr.gff -b $out_dir/${i}.nlr.bed -m $out_dir/${i}.nlr.motif.bed
 done
 
 rm -rf NLR_gff/; mkdir NLR_gff/
