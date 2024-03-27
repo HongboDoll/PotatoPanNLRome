@@ -10,10 +10,14 @@ i=known
 #perl K-parse_Pfam_domains_v3.1.pl -p pep_known/${i}/pfam/*pfamscan-*.out -e 0.001 -v T -o results_known/${i}/${i}_pfamscan.parsed.verbose
 
 rm -rf results; mkdir results
+n=1
 ls pep | while read i
 do
-rm -rf results/${i}; mkdir -p results/${i}
-./run_pfam_scan.sh pep/${i} 22 # 10 is CPU thread used
+
+echo -e """#!/bin/bash
+
+rm -rf results/${i}; mkdir -p results/${i}; rm -rf pep/${i}/pfam
+./run_pfam_scan.sh pep/${i} 10 $n # 10 is CPU thread used, $n is number of commands
 #
 awk '$13<0.05' pep/${i}/pfam/*pfamscan-*.out > pep/${i}/pfam/${i}_pfamscan_filter.out
 perl K-parse_Pfam_domains_v3.1.pl -p pep/${i}/pfam/${i}_pfamscan_filter.out -e 0.05 -v T -o results/${i}/${i}_pfamscan.parsed.verbose
@@ -23,9 +27,20 @@ perl K-parse_Pfam_domains_NLR-fusions-v2.2.pl -i results/${i} -e 0.05 -o results
 #
 ./filter_ID_domain.py results/${i}/${i}_pfamscan.parsed.verbose.NLRSD.txt results/${i}/${i}_NLRSD_stat.xls results/${i}/${i}_NLRSD_gene_stat.xls > results/${i}/${i}_pfamscan.parsed.verbose.NLRSD.filter.txt
 #
+""" > ${i}_run.sh && chmod 755 ${i}_run.sh
+n=`expr $n + 1`
+
 done
-#
-#
+
+rm run.sh
+ls *_run.sh | while read i
+do
+	echo -e "./${i}" >> run.sh
+done
+chmod 755 run.sh
+
+cat ./run.sh | parallel -j 39
+
 ls pep | while read i
 do
     awk '{print "'"$i"'""\t"$1"\t"$2}' results/${i}/${i}_NLRSD_stat.xls > t; mv t results/${i}/${i}_NLRSD_stat.xls
