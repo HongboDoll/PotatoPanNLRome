@@ -7,7 +7,7 @@ i=known
 #rm -rf results_known/; mkdir results_known/ ; mkdir -p results_known/$i
 #./run_pfam_scan.sh pep_known/${i} 22 # 10 is CPU thread used
 
-#perl K-parse_Pfam_domains_v3.1.pl -p pep_known/${i}/pfam/*pfamscan-*.out -e 0.001 -v T -o results_known/${i}/${i}_pfamscan.parsed.verbose
+#perl K-parse_Pfam_domains_v3.1.pl -p pep_known/${i}/pfam/*pfamscan-*.out -e 0.05 -v T -o results_known/${i}/${i}_pfamscan.parsed.verbose
 
 rm -rf results; mkdir results
 n=1
@@ -19,7 +19,7 @@ echo -e """#!/bin/bash
 rm -rf results/${i}; mkdir -p results/${i}; rm -rf pep/${i}/pfam
 ./run_pfam_scan.sh pep/${i} 10 $n # 10 is CPU thread used, $n is number of commands
 #
-awk '$13<0.05' pep/${i}/pfam/*pfamscan-*.out > pep/${i}/pfam/${i}_pfamscan_filter.out
+awk '\$13<0.05' pep/${i}/pfam/*pfamscan-*.out > pep/${i}/pfam/${i}_pfamscan_filter.out
 perl K-parse_Pfam_domains_v3.1.pl -p pep/${i}/pfam/${i}_pfamscan_filter.out -e 0.05 -v T -o results/${i}/${i}_pfamscan.parsed.verbose
 
 sed "s/80/${i}/g" db_descriptions.txt > results/db_descriptions_${i}.txt
