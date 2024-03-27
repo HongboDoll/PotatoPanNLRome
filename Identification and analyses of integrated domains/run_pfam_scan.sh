@@ -11,6 +11,7 @@
 # specify directory in which you want to search for all *protein.fa files and annotate them with pfamscan
 IN_DIR="$1" 
 CPU="$2"
+number="$3"
 
 # set location of Pfam db
 # By default using $HMMERDB environment variable (as used by HMMER itself)
@@ -21,7 +22,7 @@ NUMCORES=1
 
 # record current date and time and create a commands file.
 TSTAMP=$(date +%Y%m%d-%H%M%S)
-CMDFILE=commands.${TSTAMP}.txt
+CMDFILE=commands.${TSTAMP}.${number}.txt
 
 if [[ "$Pfam" == "" ]]; then
     echo "ERROR: Location of Pfam HMM databases not set."
