@@ -204,4 +204,5 @@ for (n in 2:spe_num){
         }
     }
 }
-
+# legend rule
+segments(left, 4, left + 50000, 4)
