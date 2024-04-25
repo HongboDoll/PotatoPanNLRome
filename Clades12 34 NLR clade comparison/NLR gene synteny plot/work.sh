@@ -29,15 +29,15 @@
 #	cd -
 #done
 
-sed -n '33877,33915p' Solanum_americanum.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"1","yellow"}else{print $4,$1,$2,$3,$6,"1","blue"}}' > Solanum_americanum.card1.bed
-sed -n '22697,22714p' Solanum_cardiophyllumC509.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"2","yellow"}else{print $4,$1,$2,$3,$6,"2","blue"}}' > Solanum_cardiophyllumC509.card1.bed
-sed -n '11605,11625p' Solanum_jamesii.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"3","yellow"}else{print $4,$1,$2,$3,$6,"3","blue"}}' > Solanum_jamesii.card1.bed
-sed -n '31933,31964p' Solanum_chacoense.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"4","yellow"}else{print $4,$1,$2,$3,$6,"4","blue"}}' > Solanum_chacoense.card1.bed
-sed -n '26648,26671p' Solanum_cajamarquenseC534.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"5","yellow"}else{print $4,$1,$2,$3,$6,"5","blue"}}' > Solanum_cajamarquenseC534.card1.bed
-sed -n '26675,26703p' Solanum_neorossii.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"6","yellow"}else{print $4,$1,$2,$3,$6,"6","blue"}}' > Solanum_neorossii.card1.bed
-sed -n '12090,12116p' Solanum_candolleanum.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"7","yellow"}else{print $4,$1,$2,$3,$6,"7","blue"}}' > Solanum_candolleanum.card1.bed
-sed -n '34726,34757p' Solanum_tuberosum_phurejaC118.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"8","yellow"}else{print $4,$1,$2,$3,$6,"8","blue"}}' > Solanum_tuberosum_phurejaC118.card1.bed
-sed -n '29998,30025p' Solanum_tuberosum_stenotomumC093.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"9","yellow"}else{print $4,$1,$2,$3,$6,"9","blue"}}' > Solanum_tuberosum_stenotomumC093.card1.bed
+sed -n '33870,33929p' Solanum_americanum.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"1","yellow"}else{print $4,$1,$2,$3,$6,"1","blue"}}' > Solanum_americanum.card1.bed
+sed -n '22684,22721p' Solanum_cardiophyllumC509.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"2","yellow"}else{print $4,$1,$2,$3,$6,"2","blue"}}' > Solanum_cardiophyllumC509.card1.bed
+sed -n '11598,11636p' Solanum_jamesii.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"3","yellow"}else{print $4,$1,$2,$3,$6,"3","blue"}}' > Solanum_jamesii.card1.bed
+sed -n '31926,31978p' Solanum_chacoense.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"4","yellow"}else{print $4,$1,$2,$3,$6,"4","blue"}}' > Solanum_chacoense.card1.bed
+sed -n '26645,26677p' Solanum_cajamarquenseC534.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"5","yellow"}else{print $4,$1,$2,$3,$6,"5","blue"}}' > Solanum_cajamarquenseC534.card1.bed
+sed -n '26668,26717p' Solanum_neorossii.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"6","yellow"}else{print $4,$1,$2,$3,$6,"6","blue"}}' > Solanum_neorossii.card1.bed
+sed -n '12079,12123p' Solanum_candolleanum.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"7","yellow"}else{print $4,$1,$2,$3,$6,"7","blue"}}' > Solanum_candolleanum.card1.bed
+sed -n '34720,34767p' Solanum_tuberosum_phurejaC118.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"8","yellow"}else{print $4,$1,$2,$3,$6,"8","blue"}}' > Solanum_tuberosum_phurejaC118.card1.bed
+sed -n '29984,30031p' Solanum_tuberosum_stenotomumC093.bed |awk 'BEGIN{OFS="\t"}{if($4~/_NLR_/){print $4,$1,$2,$3,$6,"9","yellow"}else{print $4,$1,$2,$3,$6,"9","blue"}}' > Solanum_tuberosum_stenotomumC093.card1.bed
 
 ######### reverse compliment these species to avoid inversions
 awk 'BEGIN{OFS="\t"}{if($5=="+"){print $1,$2,18129784-$4,18129784-$3,"-",$6,$7}else{print $1,$2,18129784-$4,18129784-$3,"+",$6,$7}}' Solanum_cardiophyllumC509.card1.bed > Solanum_cardiophyllumC509.card1.reverse.bed
