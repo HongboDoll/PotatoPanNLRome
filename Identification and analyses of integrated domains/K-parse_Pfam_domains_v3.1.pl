@@ -60,7 +60,6 @@ while ($line = <FILE1> ){
 	
 	($query_id, $ali_from, $ali_to, $env_from, $env_to, $domain_id, $domain_name, $domain_type, $hmm_from, $hmm_to, $hmm_length, $bit_score, $evalue, $signif, $clan, $active_sites) = split (/\t/, $line);
 
-	$n++;
 
 # for each sequence
 # store all alignment coordinates and correspondin domain and evalue
@@ -69,7 +68,7 @@ while ($line = <FILE1> ){
 	$all_domains{$query_id}{$n}{'end'}=$ali_to;
 	$all_domains{$query_id}{$n}{'evalue'}=$evalue;
 	$all_domains{$query_id}{$n}{'domain'}=$domain_name;
-
+	$n++;
     } 
 }
 
