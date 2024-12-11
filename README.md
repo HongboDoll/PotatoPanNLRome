@@ -16,7 +16,7 @@ Pipelines and relevant scripts for:
 > [!IMPORTANT]
 > - Versions of all required software are stated in the "Methods" section of the manuscript  
 > - There is no need to install these scripts; just download them and make necessary modifications    
-> - All instructions/demo to run these pipelines are presented in the work.sh or *.sh files in shell programing language  
+> - All instructions/demo to run these pipelines are presented in the work.sh or *.sh files in each directory using shell programing language  
 
 
 # Citation
