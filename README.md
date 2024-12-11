@@ -21,6 +21,10 @@ Pipelines and relevant scripts for:
 
 # Citation
 
+# :wine_glass: License
+
+MIT
+
 # Contacts
 
 Hongbo Li (lihongbo_solab@163.com)
